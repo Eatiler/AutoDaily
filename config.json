@@ -1,0 +1,18 @@
+{
+  "ServeConfig":{
+    "Port":9968
+  },
+  "WeChat":{
+    "Token":"",
+    "EncodingAESKey":"",
+    "CorpId":"",
+    "AgentId":"",
+    "CorpSecret":""
+  },
+  "BonusConfig":{
+    "JDServe":{
+      "Bonus":"9:30:00",
+      "Update":"22:30:00"
+    }
+  }
+}
