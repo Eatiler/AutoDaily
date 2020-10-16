@@ -1,6 +1,13 @@
 # AutoDaily 使用说明
 基于node.js环境，可以通过企业微信应用来控制的京东签到服务<br>
-只需要通过简单的数字回复就可以做到更新Cookie ，更新签到脚本.
+只需要通过简单的数字回复就可以做到更新Cookie ，更新签到脚本.<br>
+本脚本服务基于<br>
+[【NobyDa】作者的京东签到模块](https://github.com/NobyDa/Script/tree/master/JD-DailyBonus)
+<br>
+理论上可以完整支持该作者的所有签到脚本.<br>
+推荐部署到树莓派、或者阿里、腾讯学生服务器中.
+
+
 > 注意：本工具依赖企业微信应用<br>
 
 >
