@@ -18,13 +18,17 @@ class HandleWork {
   }
 
   async JDUpdate(){
-    await HandleWget.Down(__dirname+'/JDModule/Down','JDBonus.js','https://raw.githubusercontent.com/NobyDa/Script/master/JD-DailyBonus/JD_DailyBonus.js');
-    const FileContent =  fs.readFileSync(__dirname+'/JDModule/Down/JDBonus.js', 'utf8');                //载入下载的JS文件
-    fs.writeFileSync(__dirname+'/JDModule/Down/JDBonusBak.js',FileContent);                              //操作备份
-    const {JDCookie} = this.ReadCookieJson();
-    let HandleKey = `var Key = '${JDCookie.User1}';`;                                                   //用户1数据
-    let HandleFileRes = FileContent.replace("var Key = '';",HandleKey);
-    fs.writeFileSync(__dirname+'/JDModule/Down/JDBonus.js',HandleFileRes);                              //保存编辑后的签到文件
+    try{
+      await HandleWget.Down(__dirname+'/JDModule/Down','JDBonus.js','https://raw.githubusercontent.com/NobyDa/Script/master/JD-DailyBonus/JD_DailyBonus.js');
+      const FileContent =  fs.readFileSync(__dirname+'/JDModule/Down/JDBonus.js', 'utf8');                //载入下载的JS文件
+      fs.writeFileSync(__dirname+'/JDModule/Down/JDBonusBak.js',FileContent);                              //操作备份
+      const {JDCookie} = this.ReadCookieJson();
+      let HandleKey = `var Key = '${JDCookie.User1}';`;                                                   //用户1数据
+      let HandleFileRes = FileContent.replace("var Key = '';",HandleKey);
+      fs.writeFileSync(__dirname+'/JDModule/Down/JDBonus.js',HandleFileRes);                              //保存编辑后的签到文件
+    }catch(e){
+     this.SaveCookie();                               //发生错误恢复原文件备份
+    }
   }
 
   //设置Cookie到Json文件中
@@ -39,8 +43,7 @@ class HandleWork {
     const FileContent =  fs.readFileSync(__dirname+'/JDModule/Down/JDBonusBak.js', 'utf8');                //读取备份空白文件去修改
     const {JDCookie} = this.ReadCookieJson();
     let HandleKey = `var Key = '${JDCookie.User1}';`;                                                   //用户1数据
-    let HandleDualKey = `var DualKey = '${JDCookie.User2}';`;                                           //用户2数据
-    let HandleFileRes = FileContent.replace("var Key = '';",HandleKey).replace("var DualKey = '';",HandleDualKey);
+    let HandleFileRes = FileContent.replace("var Key = '';",HandleKey);
     fs.writeFileSync(__dirname+'/JDModule/Down/JDBonus.js',HandleFileRes);                              //保存编辑后的签到文件
   }
 
